@@ -17,7 +17,7 @@ def square_wave(frequency, duration, amplitude=0.5, sampling_rate=44100):
 def sawtooth_wave(frequency, duration, amplitude=0.5, sampling_rate=44100):
     t = np.linspace(0, duration, int(sampling_rate * duration), endpoint=False)
     wave = amplitude * scipy.signal.sawtooth(2 * np.pi * frequency * t)
-    return wavefrom flaskr import create_app
+    return wave
 
 def white_noise(duration, amplitude=1.0, sampling_rate=44100):
     noise = amplitude * (np.random.rand(int(sampling_rate * duration)) * 2 - 1)
