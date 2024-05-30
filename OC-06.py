@@ -2,12 +2,8 @@ import numpy as np
 import scipy.signal
 import sounddevice as sd
 from scipy.io.wavfile import write
-from flaskr import app
-from flask import render_template
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+
 
 def square_wave(frequency, duration, amplitude=0.5, sampling_rate=44100):
     t = np.linspace(0, duration, int(sampling_rate * duration), endpoint=False)
@@ -37,19 +33,19 @@ def generate_waveforms(melody, base, base2, noise_sections, bpm=120, melody_ampl
 
     for semitone, length in melody:
         duration = note_duration(bpm, length)
-        frequency = base_frequency * 2**(semitone / 12.0)
+        frequency = base_frequency * 2**((semitone+3) / 12.0)
         note_wave = sawtooth_wave(frequency, duration, amplitude=melody_amplitude)
         melody_wave = np.concatenate([melody_wave, note_wave])
 
     for semitone, length in base:
         duration = note_duration(bpm, length)
-        frequency = base_frequency * 2**(semitone / 12.0)
+        frequency = base_frequency * 2**((semitone+3) / 12.0)
         note_wave = square_wave(frequency, duration, amplitude=base_amplitude)
         base_wave = np.concatenate([base_wave, note_wave])
 
     for semitone, length in base2:
         duration = note_duration(bpm, length)
-        frequency = base_frequency * 2**(semitone / 12.0)
+        frequency = base_frequency * 2**((semitone+3) / 12.0)
         note_wave = square_wave(frequency, duration, amplitude=base2_amplitude)
         base2_waveform = np.concatenate([base2_waveform, note_wave])
 

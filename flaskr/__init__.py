@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, request
 import numpy as np
 import scipy.signal
 import scipy.io.wavfile as wavfile
@@ -10,8 +10,10 @@ def create_app():
     def index():
         return render_template('index.html')
 
-    @app.route('/generate_sound')
+    @app.route('/generate_sound', methods=['POST'])
     def generate_sound():
+        bpm = int(request.form.get('bpm', 130))
+
         def square_wave(frequency, duration, amplitude=0.5, sampling_rate=44100):
             t = np.linspace(0, duration, int(sampling_rate * duration), endpoint=False)
             wave = amplitude * np.sign(np.sin(2 * np.pi * frequency * t))
@@ -40,19 +42,19 @@ def create_app():
 
             for semitone, length in melody:
                 duration = note_duration(bpm, length)
-                frequency = base_frequency * 2**(semitone / 12.0)
+                frequency = base_frequency * 2**((semitone+3) / 12.0)
                 note_wave = sawtooth_wave(frequency, duration, amplitude=melody_amplitude)
                 melody_wave = np.concatenate([melody_wave, note_wave])
 
             for semitone, length in base:
                 duration = note_duration(bpm, length)
-                frequency = base_frequency * 2**(semitone / 12.0)
+                frequency = base_frequency * 2**((semitone+3) / 12.0)
                 note_wave = square_wave(frequency, duration, amplitude=base_amplitude)
                 base_wave = np.concatenate([base_wave, note_wave])
 
             for semitone, length in base2:
                 duration = note_duration(bpm, length)
-                frequency = base_frequency * 2**(semitone / 12.0)
+                frequency = base_frequency * 2**((semitone+3) / 12.0)
                 note_wave = square_wave(frequency, duration, amplitude=base2_amplitude)
                 base2_waveform = np.concatenate([base2_waveform, note_wave])
 
@@ -106,9 +108,6 @@ def create_app():
                 [4, 2], [7, 2], [4, 2], [7, 2], [4, 2], [7, 2], [4, 2], [7, 2]]
         noise_sections = [0.1, 30]
 
-        # BPM
-        bpm = 130
-
         # Generate waveforms
         base_wave, melody_wave, base2_waveform, noise_wave = generate_waveforms(melody, base, base2, noise_sections, bpm)
 
@@ -128,3 +127,8 @@ def create_app():
         return send_file('sound.wav', as_attachment=True)
 
     return app
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=True)
+

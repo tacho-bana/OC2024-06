@@ -7,19 +7,54 @@
 </head>
 <body>
     <h1>Play Sound</h1>
+    <form id="bpmForm">
+        <label for="bpm">BPM:</label>
+        <input type="number" id="bpm" name="bpm" value="130" required>
+        <button type="submit">Generate Sound</button>
+    </form>
     <button onclick="playSound()">Play Sound</button>
+
     <script>
+        document.getElementById('bpmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const bpm = document.getElementById('bpm').value;
+            generateSound(bpm);
+        });
+
+        function generateSound(bpm) {
+            fetch('/generate_sound', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `bpm=${bpm}`
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const audio = new Audio(URL.createObjectURL(blob));
+                audio.play();
+            });
+        }
+
         function playSound() {
-            // /generate_sound エンドポイントにリクエストを送り、音声ファイルを取得して再生する
-            fetch('/generate_sound')
-                .then(response => response.blob())
-                .then(blob => {
-                    const audio = new Audio(URL.createObjectURL(blob));
-                    audio.play();
-                });
+            const bpm = document.getElementById('bpm').value;
+            fetch('/generate_sound', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `bpm=${bpm}`
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const audio = new Audio(URL.createObjectURL(blob));
+                audio.play();
+            });
         }
     </script>
 </body>
 </html>
+
+
 
 
