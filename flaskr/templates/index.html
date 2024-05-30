@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Goの練習</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Sound</title>
 </head>
-<body class="go-body">
-    <h1 class="go-practice">これはGoの練習用のサイトです</h1>
-    <p>go全然分からないよー!</p>
+<body>
+    <h1>Play Sound</h1>
+    <button onclick="playSound()">Play Sound</button>
+    <script>
+        function playSound() {
+            // /generate_sound エンドポイントにリクエストを送り、音声ファイルを取得して再生する
+            fetch('/generate_sound')
+                .then(response => response.blob())
+                .then(blob => {
+                    const audio = new Audio(URL.createObjectURL(blob));
+                    audio.play();
+                });
+        }
+    </script>
 </body>
 </html>
+
+
