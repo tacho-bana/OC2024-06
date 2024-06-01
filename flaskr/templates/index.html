@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play Sound</title>
+    <title>Generate and Play Sound</title>
 </head>
 <body>
-    <h1>Play Sound</h1>
+    <h1>Generate and Play Sound</h1>
     <form id="bpmForm">
         <label for="bpm">BPM:</label>
         <input type="number" id="bpm" name="bpm" value="130" required>
         <button type="submit">Generate Sound</button>
     </form>
-    <button onclick="playSound()">Play Sound</button>
 
     <script>
         document.getElementById('bpmForm').addEventListener('submit', function(event) {
@@ -35,25 +34,10 @@
                 audio.play();
             });
         }
-
-        function playSound() {
-            const bpm = document.getElementById('bpm').value;
-            fetch('/generate_sound', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `bpm=${bpm}`
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const audio = new Audio(URL.createObjectURL(blob));
-                audio.play();
-            });
-        }
     </script>
 </body>
 </html>
+
 
 
 
