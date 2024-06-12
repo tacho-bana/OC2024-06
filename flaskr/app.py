@@ -78,14 +78,15 @@ def create_app():
                 note_wave = square_wave(frequency, duration, amplitude=base2_amplitude)
                 base2_waveform = np.concatenate([base2_waveform, note_wave])
 
-            for i in range(0, len(noise_sections), 2):
-                noise_duration = noise_sections[i]
-                silence_duration = noise_sections[i+1] if i+1 < len(noise_sections) else 0
-
-                noise_section = white_noise(noise_duration, amplitude=noise_amplitude, sampling_rate=sampling_rate)
-                silence_section = silence(silence_duration, sampling_rate=sampling_rate)
-
-                noise_wave = np.concatenate([noise_wave, noise_section, silence_section])
+            for semitone, length in noise_sections:
+                if semitone is not None:
+                    duration = note_duration(bpm, length)
+                    noise_section = white_noise(duration, amplitude=noise_amplitude, sampling_rate=sampling_rate)
+                    noise_wave = np.concatenate([noise_wave, noise_section])
+                else:
+                    duration = note_duration(bpm, length)
+                    silence_section = silence(duration, sampling_rate=sampling_rate)
+                    noise_wave = np.concatenate([noise_wave, silence_section])
 
             return base_wave, melody_wave, base2_waveform, noise_wave
 
@@ -116,5 +117,9 @@ if __name__ == '__main__':
         os.makedirs('flaskr')
     app = create_app()
     app.run(debug=True)
+
+
+
+
 
 
