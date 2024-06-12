@@ -7,36 +7,36 @@
 </head>
 <body>
     <h1>Generate and Play Sound</h1>
-    <form id="bpmForm">
+    <form id="soundForm" enctype="multipart/form-data">
         <label for="bpm">BPM:</label>
-        <input type="number" id="bpm" name="bpm" value="130" required>
+        <input type="number" id="bpm" name="bpm" value="130" required><br><br>
+
+        <label for="waveformFile">Waveform Data File:</label>
+        <input type="file" id="waveformFile" name="waveformFile" accept=".py" required><br><br>
+
         <button type="submit">Generate Sound</button>
     </form>
 
     <script>
-        document.getElementById('bpmForm').addEventListener('submit', function(event) {
+        document.getElementById('soundForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const bpm = document.getElementById('bpm').value;
-            generateSound(bpm);
-        });
+            const formData = new FormData(document.getElementById('soundForm'));
 
-        function generateSound(bpm) {
             fetch('/generate_sound', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `bpm=${bpm}`
+                body: formData
             })
             .then(response => response.blob())
             .then(blob => {
                 const audio = new Audio(URL.createObjectURL(blob));
                 audio.play();
             });
-        }
+        });
     </script>
 </body>
 </html>
+
+
 
 
 
