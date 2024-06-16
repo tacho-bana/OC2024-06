@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Waveform Data</title>
+</head>
+<body>
+    <h1>Uploaded Waveform Data</h1>
+    <ul>
+        {% for file in files %}
+        <li>
+            <strong>Filename:</strong> {{ file.filename }}<br>
+            <strong>Username:</strong> {{ file.username }}<br>
+            <strong>Song Name:</strong> {{ file.songname }}<br>
+            <strong>Recommended BPM:</strong> {{ file.recommended_bpm }}<br>
+            <a href="{{ url_for('download_waveform', filename=file.filename) }}">Download</a>
+            <form action="{{ url_for('delete_waveform', filename=file.filename) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <button onclick="window.location.href='/'">Back to Home</button>
+    <button onclick="window.location.href='/upload'">Upload New File</button>
+</body>
+</html>
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Waveform Data</title>
+</head>
+<body>
+    <h1>Upload Waveform Data</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="songname">Song Name:</label>
+        <input type="text" id="songname" name="songname" required><br><br>
+
+        <label for="recommended_bpm">Recommended BPM:</label>
+        <input type="number" id="recommended_bpm" name="recommended_bpm" required><br><br>
+
+        <label for="waveformFile">Waveform Data File:</label>
+        <input type="file" id="waveformFile" name="waveformFile" accept=".py" required><br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <button onclick="window.location.href='/'">Back to Home</button>
+    <button onclick="window.location.href='/list'">View Uploaded Files</button>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('uploadForm'));
+
+            fetch('/upload_waveform', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('File uploaded successfully!');
+                } else {
+                    alert('File upload failed.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

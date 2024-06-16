@@ -1,9 +1,10 @@
-from flask import Flask, render_template, send_file, request
+from flask import Flask, render_template, send_file, request, redirect, url_for, jsonify, send_from_directory
 import numpy as np
 import scipy.signal
 import scipy.io.wavfile as wavfile
 import os
 import importlib.util
+import json
 
 def create_app():
     app = Flask(__name__)
@@ -12,6 +13,64 @@ def create_app():
     @app.route('/')
     def index():
         return render_template('index.html')
+
+    @app.route('/upload')
+    def upload():
+        return render_template('upload.html')
+
+    @app.route('/list')
+    def uploads():
+        files = [f for f in os.listdir(app.config['UPLOAD_FOLDER']) if f.endswith('.py')]
+        file_details = []
+        for file in files:
+            metadata_path = os.path.join(app.config['UPLOAD_FOLDER'], file + '.json')
+            if os.path.exists(metadata_path):
+                with open(metadata_path, 'r') as metadata_file:
+                    metadata = json.load(metadata_file)
+                    file_details.append({
+                        'filename': file,
+                        'username': metadata['username'],
+                        'songname': metadata['songname'],
+                        'recommended_bpm': metadata['recommended_bpm']
+                    })
+        return render_template('list.html', files=file_details)
+
+    @app.route('/upload_waveform', methods=['POST'])
+    def upload_waveform():
+        if 'waveformFile' not in request.files or 'username' not in request.form or 'songname' not in request.form or 'recommended_bpm' not in request.form:
+            return jsonify(success=False), 400
+        file = request.files['waveformFile']
+        if file.filename == '':
+            return jsonify(success=False), 400
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+
+        metadata = {
+            "username": request.form['username'],
+            "songname": request.form['songname'],
+            "recommended_bpm": request.form['recommended_bpm']
+        }
+        metadata_path = file_path + '.json'
+        with open(metadata_path, 'w') as metadata_file:
+            json.dump(metadata, metadata_file)
+
+        return jsonify(success=True)
+
+    @app.route('/download_waveform/<filename>')
+    def download_waveform(filename):
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+
+    @app.route('/delete_waveform/<filename>', methods=['POST'])
+    def delete_waveform(filename):
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        metadata_path = file_path + '.json'
+        if os.path.exists(file_path):
+            os.remove(file_path)
+        if os.path.exists(metadata_path):
+            os.remove(metadata_path)
+        return redirect(url_for('uploads'))
 
     @app.route('/generate_sound', methods=['POST'])
     def generate_sound():
@@ -117,6 +176,10 @@ if __name__ == '__main__':
         os.makedirs('flaskr')
     app = create_app()
     app.run(debug=True)
+
+
+
+
 
 
 
