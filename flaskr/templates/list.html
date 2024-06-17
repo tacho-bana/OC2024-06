@@ -6,23 +6,22 @@
     <title>Uploaded Waveform Data</title>
 </head>
 <body>
-    <h1>Uploaded Waveform Data</h1>
+    <h1>みんなの作品</h1>
     <ul>
         {% for file in files %}
         <li>
-            <strong>Filename:</strong> {{ file.filename }}<br>
             <strong>Username:</strong> {{ file.username }}<br>
             <strong>Song Name:</strong> {{ file.songname }}<br>
-            <strong>Recommended BPM:</strong> {{ file.recommended_bpm }}<br>
-            <a href="{{ url_for('download_waveform', filename=file.filename) }}">Download</a>
+            <strong>おすすめBPM:</strong> {{ file.recommended_bpm }}<br>
+            <a href="{{ url_for('download_waveform', filename=file.filename) }}">楽譜をダウンロード</a>
             <form action="{{ url_for('delete_waveform', filename=file.filename) }}" method="post" style="display:inline;">
                 <button type="submit">Delete</button>
             </form>
         </li>
         {% endfor %}
     </ul>
-    <button onclick="window.location.href='/'">Back to Home</button>
-    <button onclick="window.location.href='/upload'">Upload New File</button>
+    <button onclick="window.location.href='/'">チプレコへ戻る</button>
+    <button onclick="window.location.href='/upload'">曲を投稿する</button>
 </body>
 </html>
 
