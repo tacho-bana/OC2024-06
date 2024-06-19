@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Generate and Play Sound</title>
-</head>
+</head>    
 <body>
-    <h1 class="tipureko">チプレコ</h1>
-    <form id="soundForm" enctype="multipart/form-data">
-        <label for="bpm">BPM:</label>
-        <input type="number" id="bpm" name="bpm" value="130" required><br><br>
+    <img class="background-image" src="../static/images/haikei.png" alt="background-image">
+    <img class="tipureko-image" src="../static/images/tipureko.png" alt="tipureko">
+    <div class="content">
+        <div class="left-column">
+            <form id="soundForm" enctype="multipart/form-data">
+                <label for="bpm">BPM:</label>
+                <input type="number" id="bpm" name="bpm" value="130" required class="half-width"><br><br>
 
-        <label for="waveformFile">楽譜を読み込む:</label>
-        <input type="file" id="waveformFile" name="waveformFile" accept=".py" required><br><br>
+                <label for="waveformFile">楽譜を読み込む:</label>
+                <input type="file" id="waveformFile" name="waveformFile" accept=".py" required class="half-width"><br><br>
 
-        <button type="submit">再生</button>
-    </form>
+                <button type="submit">再生</button>
+            </form>
 
-    <button onclick="window.location.href='/list'">みんなの作品</button>
+            <button onclick="window.location.href='/list'">みんなの作品</button>
+        </div>
+        <div class="right-column">
+            <!-- ここに右側の大きな画像を挿入 -->
+            <img src="../movie/record.gif" alt="record" class="record-moive">
+        </div>
+    </div>
 
     <script>
         document.getElementById('soundForm').addEventListener('submit', function(event) {
@@ -38,12 +47,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
