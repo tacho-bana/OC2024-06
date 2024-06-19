@@ -1,7 +1,7 @@
 body {
     background-color: rgb(124, 12, 105);
     margin: 0;
-    padding-top: 150px; /* 画面上部から150px */
+    padding-top: 50px; /* 画面上部から150px */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,8 +28,8 @@ body {
 }
 
 .tipureko-image {
-    width: 500px;  /* 横500px */
-    height: 150px; /* 縦150px */
+    width: 325px;  /* 横500px */
+    height: 100px; /* 縦150px */
     display: block;
     margin: 0 auto;
 }
