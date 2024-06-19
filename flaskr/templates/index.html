@@ -16,7 +16,10 @@
                 <input type="number" id="bpm" name="bpm" value="130" required class="half-width"><br><br>
 
                 <label for="waveformFile">楽譜を読み込む:</label>
-                <input type="file" id="waveformFile" name="waveformFile" accept=".py" required class="half-width"><br><br>
+                <div class="custom-file-input">
+                    <input type="file" id="waveformFile" name="waveformFile" accept=".py" required>
+                    <label for="waveformFile">ファイルを選択</label>
+                </div><br><br>
 
                 <button type="submit">再生</button>
             </form>
@@ -24,7 +27,7 @@
             <button onclick="window.location.href='/list'">みんなの作品</button>
         </div>
         <div class="right-column">
-            <img src="../static/images/record.gif" alt="record" class="record-moive">
+            <img src="../static/images/dot-record.gif" alt="record" class="record-moive">
         </div>
     </div>
 
