@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Upload Waveform Data</title>
 </head>
 <body>
-    <h1>Upload Waveform Data</h1>
+    <img class="background-image" src="../static/images/haikei2.png" alt="background-image">
+    <h1>作品を投稿する</h1>
     <form id="uploadForm" enctype="multipart/form-data">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>

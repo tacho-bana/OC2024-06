@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Uploaded Waveform Data</title>
 </head>
 <body>
+    <img class="background-image" src="../static/images/haikei2.png" alt="background-image">s
     <h1>みんなの作品</h1>
     <ul>
         {% for file in files %}
