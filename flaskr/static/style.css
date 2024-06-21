@@ -1,7 +1,17 @@
+@charset "utf-8";
+
+
+.dotgothic16-regular {
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
 body {
     background-color: rgb(124, 12, 105);
     margin: 0;
-    padding-top: 50px; /* 画面上部から150px */
+    padding-top: 50px; /* 画面上部から50px */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,11 +38,17 @@ body {
 }
 
 .tipureko-image {
-    width: 325px;  /* 横500px */
-    height: 100px; /* 縦150px */
+    width: 400px;  /* 横500px */
+    height: 125px; /* 縦150px */
     display: block;
     margin: 0 auto;
+    box-shadow: 0px 4px 0 rgb(159, 0, 255);
 }
+
+.tipureko-image:hover {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
 
 .background-image {
     position: fixed;
@@ -52,4 +68,29 @@ body {
 .record-movie {
     max-width: 100%;
     height: auto;
+}
+
+.bpm-form {
+    padding: 15px;
+    margin-bottom: 20px;
+    color: rgb(159, 0, 255);
+    background-color: black;
+    /* background-color: rgb(47, 76, 124); */
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(159, 0, 255);
+    box-shadow: 0px 4px 0 rgb(159, 0, 255);
+}
+
+.bpm-form:hover {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+
+.bpm-text {
+    padding-bottom: 5px;
+    font-size: 35px;
+    font-family: "DotGothic16";
+    font-weight: bold;
+    letter-spacing: 0.2em;
 }
