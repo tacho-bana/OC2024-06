@@ -16,6 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'misaki_gothic_2nd', cursive;
 }
 
 .content {
@@ -93,4 +94,23 @@ body {
     font-family: "DotGothic16";
     font-weight: bold;
     letter-spacing: 0.2em;
+}
+
+@font-face {
+    font-family: 'misaki_gothic_2nd';
+    src: url('../static/fonts/misaki_gothic_2nd.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.list-title{
+    color: rgb(230, 189, 124);
+    font-size: 50px;
+    font-family: 'misaki_gothic_2nd', cursive;
+}
+
+.upload-title{
+    color: rgb(230, 189, 124);
+    font-size: 40px;
+    font-weight: bold;
 }
