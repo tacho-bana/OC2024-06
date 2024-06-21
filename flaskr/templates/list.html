@@ -7,8 +7,8 @@
     <title>Uploaded Waveform Data</title>
 </head>
 <body>
-    <img class="background-image" src="../static/images/haikei2.png" alt="background-image">s
-    <h1>みんなの作品</h1>
+    <img class="background-image" src="../static/images/haikei2.png" alt="background-image">
+    <h1 class="list-title">みんなの作品</h1>
     <ul>
         {% for file in files %}
         <li>
@@ -23,7 +23,7 @@
         {% endfor %}
     </ul>
     <button onclick="window.location.href='/'">チプレコへ戻る</button>
-    <button onclick="window.location.href='/upload'">曲を投稿する</button>
+    <button onclick="window.location.href='/upload'">作品を投稿する</button>
 </body>
 </html>
 
