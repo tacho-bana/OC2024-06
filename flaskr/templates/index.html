@@ -2,32 +2,38 @@
 <html lang="jp">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Generate and Play Sound</title>
 </head>    
 <body>
-    <img class="background-image" src="../static/images/haikei2.png" alt="background-image">
-    <img class="tipureko-image" src="../static/images/tipureko2.png" alt="tipureko">
-    <div class="content">
-        <div class="left-column">
-            <form id="soundForm" enctype="multipart/form-data">
-                <label for="bpm">BPM:</label>
-                <input type="number" id="bpm" name="bpm" value="130" required class="half-width"><br><br>
+    <div class="container">
+        <img class="background-image" src="../static/images/haikei2.png" alt="background-image">
+        <img class="tipureko-image" src="../static/images/tipureko2.png" alt="tipureko"><br><br>
+        <div class="content">
+            <div class="left-column">
+                <form class="soundform" id="soundForm" enctype="multipart/form-data">
+                    <div class="bpm-form">
+                        <label class="bpm-text" for="bpm">BPM:</label>
+                        <input class="form-control form-control-lg bpm-input" type="number" id="bpm" name="bpm" value="130" required class="half-width">
+                    </div>    
+                    <div class="mb-3">
+                        <label class="form-label" for="waveformFile">楽譜を読み込む:</label>
+                        <input class="form-control" type="file" id="waveformFile" name="waveformFile" accept=".py" required>
+                    </div><br><br>
 
-                <label for="waveformFile">楽譜を読み込む:</label>
-                <div class="custom-file-input">
-                    <input type="file" id="waveformFile" name="waveformFile" accept=".py" required>
-                    <label for="waveformFile">ファイルを選択</label>
-                </div><br><br>
+                    <button class="reproduction-button" type="submit">再生</button>
+                </form>
 
-                <button type="submit">再生</button>
-            </form>
-
-            <button onclick="window.location.href='/list'">みんなの作品</button>
-        </div>
-        <div class="right-column">
-            <img src="../static/images/dot-record.gif" alt="record" class="record-moive">
+                <button onclick="window.location.href='/list'">みんなの作品</button>
+            </div>
+            <div class="right-column">
+                <img src="../static/images/dot-record.gif" alt="record" class="record-moive">
+            </div>
         </div>
     </div>
 
