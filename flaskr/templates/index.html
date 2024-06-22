@@ -26,7 +26,7 @@
                         <input class="form-control form-control-lg wavefile-input" type="file" id="waveformFile" name="waveformFile" accept=".py" required>
                     </div>
                     <div class="button-group">
-                        <button class="reproduction-button" type="submit">再生</button>
+                        <button class="reproduction-button" id="playButton" type="submit">再生</button>
                     </div>
                 </form>
                 <div class="button-group">
@@ -40,9 +40,26 @@
     </div>
 
     <script>
+        let audio = null;
+        let isPlaying = false;
+
         document.getElementById('soundForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(document.getElementById('soundForm'));
+            const playButton = document.getElementById('playButton');
+
+            if (audio) {
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    playButton.textContent = '再生';
+                } else {
+                    audio.play();
+                    isPlaying = true;
+                    playButton.textContent = '停止';
+                }
+                return;
+            }
 
             fetch('/generate_sound', {
                 method: 'POST',
@@ -50,8 +67,15 @@
             })
             .then(response => response.blob())
             .then(blob => {
-                const audio = new Audio(URL.createObjectURL(blob));
+                audio = new Audio(URL.createObjectURL(blob));
                 audio.play();
+                isPlaying = true;
+                playButton.textContent = '停止';
+
+                audio.addEventListener('ended', function() {
+                    isPlaying = false;
+                    playButton.textContent = '再生';
+                });
             });
         });
     </script>
