@@ -11,7 +11,7 @@
 body {
     background-color: rgb(124, 12, 105);
     margin: 0;
-    padding-top: 50px; /* 画面上部から50px */
+    padding-top: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -76,11 +76,10 @@ body {
 
 .bpm-form {
     padding: 15px;
-    margin-bottom: 4cqb;
+    margin-bottom: 50px;
     color: rgb(159, 0, 255);
     background-color: black;
-    /* background-color: rgb(47, 76, 124); */
-    border-width: 2px;
+    border-width: 3px;
     border-style: dotted;
     border-color: rgb(159, 0, 255);
     box-shadow: 0px 4px 0 rgb(159, 0, 255);
@@ -93,16 +92,20 @@ body {
 
 .bpm-text {
     padding-bottom: 5px;
-    font-size: 35px;
-    font-family: "DotGothic16";
+    font-size: 30px;
     font-weight: bold;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
+}
+
+.bpm-input {
+    font-size: 25px;
+    padding: auto 0;
 }
 
 .wavefile-form {
     background-color: black;
     padding: 15px;
-    border-width: 2px;
+    border-width: 3px;
     border-style: dotted;
     border-color: rgb(159, 0, 255);
     box-shadow: 0px 4px 0 rgb(159, 0, 255);
@@ -111,6 +114,17 @@ body {
 .wavefile-form:hover {
     transform: translateY(4px);
     box-shadow: none;
+}
+
+.wavefile-label {
+    font-size: 30px;
+    color: rgb(159, 0, 255);
+    letter-spacing: 0.1em;
+}
+
+.wavefile-input {
+    font-size: 20px;
+    letter-spacing: 0.1em;
 }
 
 @font-face {
