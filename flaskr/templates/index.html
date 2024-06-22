@@ -24,12 +24,14 @@
                     <div class="wavefile-form">
                         <label class="form-label wavefile-label" for="waveformFile">楽譜を読み込む:</label>
                         <input class="form-control form-control-lg wavefile-input" type="file" id="waveformFile" name="waveformFile" accept=".py" required>
-                    </div><br><br>
-
-                    <button class="reproduction-button" type="submit">再生</button>
+                    </div>
+                    <div class="button-group">
+                        <button class="reproduction-button" type="submit">再生</button>
+                    </div>
                 </form>
-
-                <button onclick="window.location.href='/list'">みんなの作品</button>
+                <div class="button-group">
+                    <button onclick="window.location.href='/list'">みんなの作品</button>
+                </div>
             </div>
             <div class="right-column">
                 <img src="../static/images/dot-record.gif" alt="record" class="record-moive">
