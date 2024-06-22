@@ -49,15 +49,11 @@
             const playButton = document.getElementById('playButton');
 
             if (audio) {
-                if (isPlaying) {
-                    audio.pause();
-                    isPlaying = false;
-                    playButton.textContent = '再生';
-                } else {
-                    audio.play();
-                    isPlaying = true;
-                    playButton.textContent = '停止';
-                }
+                audio.pause();
+                audio.currentTime = 0;
+                audio = null;
+                isPlaying = false;
+                playButton.textContent = '再生';
                 return;
             }
 
@@ -75,6 +71,7 @@
                 audio.addEventListener('ended', function() {
                     isPlaying = false;
                     playButton.textContent = '再生';
+                    audio = null;
                 });
             });
         });
