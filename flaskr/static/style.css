@@ -11,7 +11,7 @@
 body {
     background-color: rgb(124, 12, 105);
     margin: 0;
-    padding-top: 50px;
+    padding-top: 20px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -128,10 +128,14 @@ body {
     letter-spacing: 0.1em;
 }
 
-.reproduction-button {
-    padding: 10px 15px;
+.button-group {
+    display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.reproduction-button {
+    padding: 10px 55px;
+    margin-bottom: 40px;
     background-color: black;
     color: rgb(159, 0, 255);
     font-size: 20px;
@@ -139,9 +143,22 @@ body {
     border-color: rgb(159, 0, 255);
     border-style: dotted;
     box-shadow: 0px 4px 0 rgb(159, 0, 255);
+    cursor: pointer;
 }
 
-.reproduction-button:hover {
+.works-button {
+    padding: 10px 15px;
+    background-color: black;
+    color: rgb(159, 0, 255);
+    font-size: 20px;
+    border-width: 3px;
+    border-color: rgb(159, 0, 255);
+    border-style: dotted;
+    box-shadow: 0px 4px 0 rgb(159, 0, 255);
+    cursor: pointer;
+}
+
+.reproduction-button:hover, .works-button:hover {
     transform: translateY(4px);
     box-shadow: none;
 }
