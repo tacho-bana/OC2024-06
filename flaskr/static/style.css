@@ -136,13 +136,13 @@ body {
 .reproduction-button {
     padding: 10px 55px;
     margin-bottom: 40px;
-    background-color: black;
-    color: rgb(159, 0, 255);
+    background-color: rgb(223, 56, 55);
+    color: #fff;
     font-size: 20px;
-    border-width: 3px;
-    border-color: rgb(159, 0, 255);
-    border-style: dotted;
-    box-shadow: 0px 4px 0 rgb(159, 0, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(223, 56, 55);
+    box-shadow: 4px 4px 0 rgb(143, 1, 1);
     cursor: pointer;
 }
 
