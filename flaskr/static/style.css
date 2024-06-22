@@ -156,6 +156,7 @@ body {
     border-style: dotted;
     box-shadow: 0px 4px 0 rgb(159, 0, 255);
     cursor: pointer;
+    font-family: 'misaki_gothic_2nd', cursive;
 }
 
 .reproduction-button:hover, .works-button:hover {
@@ -178,7 +179,7 @@ body {
 
 .upload-title{
     color: rgb(230, 189, 124);
-    font-size: 50px;
+    font-size: 35px;
     font-weight: bold;
 }
 
@@ -188,36 +189,105 @@ body {
     font-family: 'misaki_gothic_2nd', cursive;
 }
 
-.upload-form{
-    color: rgb(0, 0, 0);
-    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
-    font-size: 40px;
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin: auto;
+    font-family: 'misaki_gothic_2nd', cursive;
+    border: 4px solid #da00ae;
+}
+
+.upload-form label {
+    margin-bottom: 5px;
     font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000; /* テキストの影 */
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="number"],
+.upload-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #555;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
     font-family: 'misaki_gothic_2nd', cursive;
 }
 
-.upload-button{
+.upload-button {
     display: inline-block;
-    padding: 8px;
+    padding: 10px 20px;
     width: 100%;
+    border: 2px solid #000;
     border-radius: 4px;
-    background-color: #554350;
+    background-color: rgb(154, 0, 181);
     color: #fff;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    font-size: 16px;
     cursor: pointer;
-    border: 2px solid transparent;
+    text-align: center;
+    text-shadow: 2px 2px 0 #000;
+    box-shadow: 0 4px #000;
+    transition: all 0.1s ease-in-out;
     font-family: 'misaki_gothic_2nd', cursive;
 }
 
 .upload-button:hover {
-    background-color: #000;
-    border: 2px solid rgb(255, 61, 164);
+    background-color: rgb(134, 0, 158);
+}
+
+.upload-button:active {
+    background-color: rgb(134, 0, 158);
+    box-shadow: 0 2px #000;
+    transform: translateY(2px);
 }
 
 .upload-button:focus {
-    outline: 0;
-    background-color: #000;
-    border: 2px solid rgb(255, 61, 164);
+    outline: none;
 }
+
+ul{
+    padding-left:0;
+  }
+
+.list {
+    list-style:none;
+    color: #fff;
+    background-color: #333;
+    border: 4px solid #da00ae; 
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 0 #000; 
+}
+
+.list-str {
+    color: #ff2eb3;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.download {
+    color: #0f0; 
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.download:hover {
+    text-decoration: underline;
+}
+
