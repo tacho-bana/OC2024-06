@@ -10,23 +10,23 @@
     <img class="background-image" src="../static/images/haikei2.png" alt="background-image">
     <h1 class="upload-title">作品を投稿する</h1>
     <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
-        <label for="username">Username:</label>
+        <label class="upload-text" for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
 
-        <label for="songname">Song Name:</label>
+        <label class="upload-text" for="songname">Song Name:</label>
         <input type="text" id="songname" name="songname" required><br><br>
 
-        <label for="recommended_bpm">おすすめBPM:</label>
+        <label class="upload-text" for="recommended_bpm">おすすめBPM:</label>
         <input type="number" id="recommended_bpm" name="recommended_bpm" required><br><br>
 
-        <label for="waveformFile">曲のファイル:</label>
-        <input type="file" id="waveformFile" name="waveformFile" accept=".py" required><br><br>
+        <label class="upload-text" for="waveformFile">曲のファイル:</label>
+        <input class="upload-text" type="file" id="waveformFile" name="waveformFile" accept=".py" required><br><br>
 
-        <button class="upload-button" type="submit">Upload</button>
-    </form>
+        <button class="upload-button" type="submit">投稿</button>
+    </form><br>
 
-    <button onclick="window.location.href='/'">チプレコへ戻る</button>
-    <button onclick="window.location.href='/list'">みんなの作品</button>
+    <button class="works-button" onclick="window.location.href='/'">チプレコへ戻る</button><br>
+    <button class="works-button" onclick="window.location.href='/list'">みんなの作品</button>
 
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
