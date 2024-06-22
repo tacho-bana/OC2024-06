@@ -111,6 +111,46 @@ body {
 
 .upload-title{
     color: rgb(230, 189, 124);
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.list{
+    color: rgb(68, 56, 67);
+    font-size: 40px;
+    font-family: 'misaki_gothic_2nd', cursive;
+}
+
+.upload-form{
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
     font-size: 40px;
     font-weight: bold;
+    font-family: 'misaki_gothic_2nd', cursive;
+}
+
+.upload-button{
+    display: inline-block;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #554350;
+    color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-family: 'misaki_gothic_2nd', cursive;
+}
+
+.upload-button:hover {
+    background-color: #000;
+    border: 2px solid rgb(255, 61, 164);
+}
+
+.upload-button:focus {
+    outline: 0;
+    background-color: #000;
+    border: 2px solid rgb(255, 61, 164);
 }
